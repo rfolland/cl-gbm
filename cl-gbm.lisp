@@ -9,6 +9,9 @@
 (defcfun ("gbm_create_device" create-device) :pointer
   (fd :int))
 
+(defcfun ("device_get_fd" device-get-fd) :int
+  (gbm :pointer))
+
 (defcfun ("gbm_surface_create" surface-create) :pointer
   (device :pointer)
   (width :uint32)
@@ -31,6 +34,12 @@
 (defcfun ("gbm_bo_get_handle" bo-get-handle) :uint32 ;(:union bo-handle)
   (bo :pointer))
 
+(defcfun ("gbm_bo_get_width" bo-get-width) :uint32
+  (bo :pointer))
+
+(defcfun ("gbm_bo_get_height" bo-get-height) :uint32
+  (bo :pointer))
+
 (defcfun ("gbm_bo_get_stride" bo-get-stride) :uint32
   (bo :pointer))
 
@@ -44,3 +53,13 @@
 (defcfun ("gbm_device_destroy" device-destroy) :void
   (device :pointer))
 
+(defcfun ("gbm_bo_get_device" bo-get-device) :pointer
+  (bo :pointer))
+
+(defcfun ("gbm_bo_get_user_data" get-user-data) :pointer
+  (bo :pointer))
+
+(defcfun ("gbm_bo_set_user_data" set-user-data) :void
+  (bo :pointer)
+  (data :pointer)
+  (destroy-user-data :pointer))
